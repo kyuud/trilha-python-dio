@@ -89,7 +89,7 @@ def filtrar_usuario(cpf, usuarios):
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
     return usuarios_filtrados[0] if usuarios_filtrados else None
 
-def listar_contas(contas):
+def lista_contas(contas):
     for conta in contas:
         linha = f"""\
             Agencia:\t{conta["agencia"]}
@@ -152,7 +152,7 @@ def main():
                 contas.append(conta)
         
         elif opcao == "lc":
-            listar_contas(contas)
+            lista_contas(contas)
 
         elif opcao == "q":
             break
