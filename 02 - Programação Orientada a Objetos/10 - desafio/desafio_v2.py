@@ -129,7 +129,7 @@ class Historico:
             {
                 "tipo": transacao.__class__.__name__,
                 "valor": transacao.valor,
-                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%s"),
+                "data": datetime.now().strftime("%d-%m-%Y %H:%M:%S"),
             }
         )
 
@@ -210,13 +210,13 @@ def depositar(clientes):
     if not cliente:
         print("\n@@@ Cliente não encontrado! @@@")
         return
-
-    valor = float(input("Informe o valor do depósito: "))
-    transacao = Deposito(valor)
-
+    
     conta = recuperar_conta_cliente(cliente)
     if not conta:
         return
+    
+    valor = float(input("Informe o valor do depósito: "))
+    transacao = Deposito(valor)
 
     cliente.realizar_transacao(conta, transacao)
 
@@ -229,12 +229,12 @@ def sacar(clientes):
         print("\n@@@ Cliente não encontrado! @@@")
         return
 
-    valor = float(input("Informe o valor do saque: "))
-    transacao = Saque(valor)
-
     conta = recuperar_conta_cliente(cliente)
     if not conta:
         return
+    
+    valor = float(input("Informe o valor do saque: "))
+    transacao = Saque(valor)
 
     cliente.realizar_transacao(conta, transacao)
 
@@ -259,7 +259,7 @@ def exibir_extrato(clientes):
         extrato = "Não foram realizadas movimentações."
     else:
         for transacao in transacoes:
-            extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f}"
+            extrato += f"\n{transacao['tipo']}:\n\tR$ {transacao['valor']:.2f} \n\t{transacao['data']}"
 
     print(extrato)
     print(f"\nSaldo:\n\tR$ {conta.saldo:.2f}")
